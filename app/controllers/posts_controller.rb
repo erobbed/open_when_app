@@ -7,6 +7,8 @@ class PostsController < ApplicationController
   end
 
   def create
+    # THING TO DO
+    # FIGURE OUT HOW TO USE POST_PARAMS AND SET CERTAIN VALUES BASED ON SESSION ID 
   end
 
   private
