@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731180447) do
+ActiveRecord::Schema.define(version: 20170731180415) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "opens", force: :cascade do |t|
-    t.integer "recipient_id"
-    t.boolean "read?", default: false
-    t.datetime "read_time"
-    t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,6 +30,10 @@ ActiveRecord::Schema.define(version: 20170731180447) do
     t.string "content"
     t.integer "category_id"
     t.integer "sender_id"
+    t.integer "recipient_id"
+    t.string "recipient_email"
+    t.boolean "read?", default: false
+    t.datetime "read_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170731180447) do
     t.string "name"
     t.string "email"
     t.string "username"
-    t.string "passowrd_digest"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
