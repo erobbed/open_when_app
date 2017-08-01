@@ -47,6 +47,7 @@ class PostsController < ApplicationController
   def read
     @post = Post.find(params[:id])
     @post.read_status = true
+    @post.read_time = Time.now
     @post.save
     redirect_to post_path(@post)
   end

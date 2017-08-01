@@ -1,9 +1,12 @@
 
 <h1><%= @post.title %></h1><br>
 <p><%= @post.content %></p><br>
-From: <%= User.find_by(id: @post.sender_id).name.capitalize %>
+From: <%= User.find_by(id: @post.sender_id).name.titleize %>
 <div class="tags">Tags:
 <% @post.tags.each do |tag| %>
   <%= tag.name %>
 <% end %>
+<br>
+<br>
+Read: <%= @post.read_time.strftime("%A, %B %d, %Y at %l:%M %P") %>
 </div>

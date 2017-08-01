@@ -1,1 +1,12 @@
-hello
+<strong>Name:</strong> <%= current_user.name.titleize %><br>
+<strong>Username:</strong> <%= current_user.username %><br>
+<strong>Email:</strong> <%= current_user.email %><br>
+
+<br>
+<strong>OpenWhens written:</strong> <%= current_user.posts.count %><br>
+<strong>OpenWhens received:</strong> <%= current_user.opens.count %><br>
+<strong>Date joined:</strong> <%= current_user.created_at.strftime("%A, %B %d, %Y at %l:%M %P") %>
+
+<br>
+<br>
+<%= link_to "Edit account", edit_user_path(current_user) %>

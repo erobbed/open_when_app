@@ -1,8 +1,14 @@
+<h4>Your OpenWhens :) Read carefully...</h4>
+
 <% selected_posts = @posts.select {|post| post.recipient_id == current_user.id} %>
 
 <ul>
 <% selected_posts.each do |post| %>
-<%= button_to post.title, post_read_path(post) %>
+  <% if post.read_status == false%>
+    <li><strong><%= link_to post.title, post_read_path(post) %></strong></li>
+  <% else %>
+    <li><%= link_to post.title, post_read_path(post) %></li>
+  <% end %>
 
 <% end %>
 </ul>
