@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :posts, :foreign_key => 'sender_id'
-  has_many :opens, :foreign_key => 'recipient_id', :class_name => "User"
+  has_many :opens, :foreign_key => 'recipient_id', :class_name => "Post"
 
   has_secure_password
 

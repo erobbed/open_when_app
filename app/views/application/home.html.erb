@@ -5,24 +5,21 @@
       <a href="/users/new">Sign Up</a>
     </div> -->
 
+<%= flash[:send_success]  %>
+
+
 <% if logged_in?  %>
   <%= button_to "Write a new OpenWhen", new_post_path, :method => "get" %>
-    <% if !current_user.posts.empty? %>
+    <% if !current_user.opens.empty? %>
         <% current_user_categories.each do |category|   %>
-        <%= button_to "Open When... You're #{category.name}", category_posts_path(category.id), :method => "get" %>
+
+     <% if current_user_category_post_count(category) > 1 %>
+          <%= button_to "Open When... You're #{category.name}", category_posts_path(category), :method => "get" %>
+    <% else %>
+          <%= button_to "Open When... You're #{category.name}", post_path(current_user_category_posts(category)[0]), :method => "get" %>
+    <% end %>
+
         <% end %>
   <% end %>
 <% end %>
 <p><%= flash[:message] %></p>
-
-
-
-
-
-
-  </div>
-
-</div>
-    </div>
-
-<!-- current_user.posts.empty? -->

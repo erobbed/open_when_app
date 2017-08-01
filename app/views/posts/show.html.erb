@@ -1,0 +1,9 @@
+
+<h1><%= @post.title %></h1><br>
+<p><%= @post.content %></p><br>
+From: <%= User.find_by(id: @post.sender_id).name.capitalize %>
+<div class="tags">Tags:
+<% @post.tags.each do |tag| %>
+  <%= tag.name %>
+<% end %>
+</div>

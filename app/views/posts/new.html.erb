@@ -1,4 +1,6 @@
 
+<%= flash[:send_failure]  %>
+
 
 <%= form_for @post do |f| %>
   <%=f.hidden_field :sender_id, value: current_user.id %><br>

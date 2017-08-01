@@ -1,4 +1,7 @@
 <% selected_posts = @posts.select {|post| post.recipient_id == current_user.id} %>
+
+<ul>
 <% selected_posts.each do |post| %>
-<%=link_to post.title, post_path(post) %>
+<li><%=link_to post.title, post_path(post) %></li>
 <% end %>
+</ul>

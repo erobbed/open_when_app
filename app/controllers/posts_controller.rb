@@ -15,8 +15,10 @@ class PostsController < ApplicationController
     end
     @post = Post.new(post_params)
     if @post.save
+      flash[:send_success] = "Success! Your OpenWhen has been sent! Rejoice!"
       redirect_to '/'
     else
+      flash[:send_failure] = "Unfortunately, you need some critical fields. Please try again!"
       redirect_to '/posts/new'
     end
   end
