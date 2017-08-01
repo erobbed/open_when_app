@@ -47,10 +47,22 @@ class PostsController < ApplicationController
   def read
     @post = Post.find(params[:id])
     @post.read_status = true
-    @post.read_time = Time.now
+     if @post.read_time.nil?
+       @post.read_time = Time.now
+     end
     @post.save
     redirect_to post_path(@post)
   end
+
+  def unread
+    @post = Post.find(params[:id])
+    @post.read_status = false
+    @post.read_time = nil
+    @post.save
+    redirect_to category_posts_path(@post.category)
+  end
+
+
 
   private
   def post_params

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
 
   post '/posts/:id/read', to: 'posts#read',  as: 'post_read'
+  post '/posts/:id/unread', to: 'posts#unread',  as: 'post_unread'
+
 
 
   resources :categories do

@@ -1,14 +1,35 @@
-<h4>Your OpenWhens :) Read carefully...</h4>
+<h4>For your eyes only</h4>
 
 <% selected_posts = @posts.select {|post| post.recipient_id == current_user.id} %>
 
-<ul>
-<% selected_posts.each do |post| %>
-  <% if post.read_status == false%>
-    <li><strong><%= link_to post.title, post_read_path(post) %></strong></li>
-  <% else %>
-    <li><%= link_to post.title, post_read_path(post) %></li>
-  <% end %>
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
 
+
+<% selected_posts.each do |post| %>
+  <tr>
+  <td style="padding: 0 10px 0 0">
+    <% if post.read_status == false%>
+      <%= image_tag 'heart.png', height: 10, width: 10 %>
+    <% end %>
+  </td>
+    <td style="padding: 0 10px 0 0">
+      <% if post.read_status == false%>
+        <strong><%= link_to post.title, post_read_path(post) %></strong>
+      <% else %>
+        <%= link_to post.title, post_read_path(post) %>
+      <% end %></td>
+
+    <td style="padding: 0 10px 0 0">
+      <% if post.read_status == true %>
+          <%= button_to "Mark as unread", post_unread_path(post) %>
+      <% end %>
+    </td>
+    </tr>
 <% end %>
-</ul>
+
+</table>
