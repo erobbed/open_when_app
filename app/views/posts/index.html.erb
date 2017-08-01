@@ -1,6 +1,20 @@
-<h4>For your eyes only</h4>
+<%= flash[:search] %>
+<h4> Open when you are: <%= Category.find(params[:category_id]).name %> </h4>
 
+<br>
 <% selected_posts = @posts.select {|post| post.recipient_id == current_user.id} %>
+
+
+
+<%= form_tag(category_posts_path(params[:category_id]), method: "get") do %>
+<%= label_tag(:q, "Search for") %>
+<%= select_tag "search_by",options_for_select([ "tag", "sender" ], :search_input) %>
+<%= text_field_tag(:q) %>
+<%= submit_tag("Search") %>
+<% end %>
+<br>
+
+
 
 <table>
   <tr>
@@ -19,9 +33,9 @@
   </td>
     <td style="padding: 0 10px 0 0">
       <% if post.read_status == false%>
-        <strong><%= link_to post.title, post_read_path(post) %></strong>
+        <strong><%= link_to post.title, post_read_path(post), method: :post %></strong>
       <% else %>
-        <%= link_to post.title, post_read_path(post) %>
+        <%= link_to post.title, post_read_path(post), method: :post %>
       <% end %></td>
 
     <td style="padding: 0 10px 0 0">

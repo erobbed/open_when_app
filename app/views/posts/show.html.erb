@@ -10,3 +10,5 @@ From: <%= User.find_by(id: @post.sender_id).name.titleize %>
 <br>
 Read: <%= @post.read_time.strftime("%A, %B %d, %Y at %l:%M %P") %>
 </div>
+
+<%= link_to "Back", category_posts_path(@post.category)%>

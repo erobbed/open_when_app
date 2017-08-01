@@ -24,7 +24,40 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    if params[:q]
+      if params["search_by"] == "sender"
+        search_user = User.find_by(name: params[:q])
+          if search_user
+            @posts = Post.where(sender_id: search_user.id)
+          else
+            flash[:search] = "Sorry! Your search did not turn up any results."
+            @posts = Post.all
+            render :index
+          end
+      else
+        #  params["search_by"] == "tag"
+        search_tag = Tag.find_by(name: params[:q])
+        if search_tag
+          @posts = Post.all.select {|post| post.tags.where(tag_id: search_tag.id)}
+        else
+          flash[:search] = "Sorry! Your search did not turn up any results."
+          @posts = Post.all
+          render :index
+        end
+      end
+    else
+      @posts = Post.all
+    end
+    # <%= form_tag(category_posts_path(params[:category_id]), method: "get") do %>
+    # <%= label_tag(:q, "Search for") %>
+    # <%= select_tag "search_by",options_for_select([ "tag", "sender" ], :search_input) %>
+    # <%= text_field_tag(:q) %>
+    # <%= submit_tag("Search") %>
+    # <% end %>
+    # <br>
+    #
+    #
+    # ActionController::Parameters {"utf8"=>"✓", "search_by"=>"sender", "q"=>"dkjfsf", "commit"=>"Search", "controller"=>"posts", "action"=>"index", "category_id"=>"1"} permitted: false>
   end
 
   def show
