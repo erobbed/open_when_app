@@ -19,7 +19,7 @@ end
 #   def change
 #     create_table :opens do |t|
 #       t.integer :recipient_id
-#       t.boolean :read?, default: false
+#       t.boolean :read_status, default: false
 #       t.datetime :read_time
 #       t.integer :post_id
 #       t.timestamps

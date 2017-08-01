@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170731180415) do
     t.integer "sender_id"
     t.integer "recipient_id"
     t.string "recipient_email"
-    t.boolean "read?", default: false
+    t.boolean "read_status", default: false
     t.datetime "read_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

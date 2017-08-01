@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :users
 
 
+
+  post '/posts/:id/read', to: 'posts#read',  as: 'post_read'
+
+
   resources :categories do
     resources :posts
   end

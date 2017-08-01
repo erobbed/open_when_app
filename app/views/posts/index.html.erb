@@ -2,6 +2,7 @@
 
 <ul>
 <% selected_posts.each do |post| %>
-<li><%=link_to post.title, post_path(post) %></li>
+<%= button_to post.title, post_read_path(post) %>
+
 <% end %>
 </ul>

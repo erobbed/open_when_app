@@ -31,23 +31,31 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
   end
 
+  def edit
+    @post = Post.find_by(id: params[:id])
+  end
 
+  def update
+    @post = Post.find_by(id: params[:id])
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      redirect_to edit_post_path(@post)
+    end
+  end
+
+  def read
+    @post = Post.find(params[:id])
+    @post.read_status = true
+    @post.save
+    redirect_to post_path(@post)
+  end
 
   private
   def post_params
-    params.require(:post).permit(:title, :content, :category_id, :sender_id, :recipient_id, :recipient_email, :read?, :read_time, tags_attributes: [:name])
+    params.require(:post).permit(:title, :content, :category_id, :sender_id, :recipient_id, :recipient_email, :read_status, :read_time, tags_attributes: [:name])
   end
 end
-
-
-# <% if @recipient = User.find_by(email: :recipient_email) %>
-#   <%= f.text_field :recipient_id, value: @recipient.id  %><br>
-# <% else %>
-#   <%= f.text_field :recipient_id, value: (
-#   User.create(name: :recipient_email, email: :recipient_email, username: :recipient_name, password: "OpenWhen").id
-#   )  %><br>
-  # <% end %>
-
 
 
 # create_table "posts", force: :cascade do |t|
@@ -57,7 +65,7 @@ end
 #   t.integer "sender_id"
 #   t.integer "recipient_id"
 #   t.string "recipient_email"
-#   t.boolean "read?", default: false
+#   t.boolean "read_status", default: false
 #   t.datetime "read_time"
 #   t.datetime "created_at", null: false
 #   t.datetime "updated_at", null: false
