@@ -1,5 +1,5 @@
 <%= flash[:search] %>
-<h4> Open when you are: <%= Category.find(params[:category_id]).name %> </h4>
+<h4> Open when you're: <%= Category.find(params[:category_id]).name %> </h4>
 
 <br>
 <% selected_posts = @posts.select {|post| post.recipient_id == current_user.id} %>
@@ -10,8 +10,9 @@
 <%= label_tag(:q, "Search for") %>
 <%= select_tag "search_by",options_for_select([ "tag", "sender" ], :search_input) %>
 <%= text_field_tag(:q) %>
-<%= submit_tag("Search") %>
+<%= submit_tag("Search", class: 'btn btn-sm btn-primary') %>
 <% end %>
+<br>
 <br>
 
 
@@ -40,7 +41,7 @@
 
     <td style="padding: 0 10px 0 0">
       <% if post.read_status == true %>
-          <%= button_to "Mark as unread", post_unread_path(post) %>
+          <%= button_to "Mark as unread", post_unread_path(post), class: 'btn btn-xs btn-primary' %>
       <% end %>
     </td>
     </tr>
