@@ -1,6 +1,7 @@
 
 
 <%= form_for @post do |f| %>
+  <%=f.hidden_field :sender_id, value: current_user.id %><br>
   <%= f.label :title %>
   <%= f.text_field :title %><br>
   <%= f.label :content %><br>
@@ -11,8 +12,6 @@
     <%= tag.label :tag %>
     <%= tag.text_field :name %><br>
   <% end %>
-  <%= f.label :recipient %>
-  <%= f.text_field :recipient %><br>
   <%= f.label :recipient_email %>
   <%= f.text_field :recipient_email %><br>
   <%= f.submit "Send an OpenWhen" %>

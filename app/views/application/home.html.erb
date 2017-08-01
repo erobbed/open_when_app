@@ -1,12 +1,4 @@
-<div class="container"  role="main">
-      <div class="theme-showcase" role="main">
-
-  <div class="left-pic">
-    <img src="https://media.giphy.com/media/3oz8xO3S4mUmacTEl2/giphy.gif" width="380" height="380">
-  </div>
-
-  <div class="right-info">
-    <h1> Welcome to Open When!</h1>
+<h1>Welcome, <%=current_user.name.capitalize %>! </h1>
 
     <!-- <div class="center">
       <a href="/signin">Sign In</a>
@@ -14,7 +6,12 @@
     </div> -->
 
 <% if logged_in?  %>
-  <%= button_to "Get started", new_post_path, :method => "get" %>
+  <%= button_to "Write a new OpenWhen", new_post_path, :method => "get" %>
+    <% if !current_user.posts.empty? %>
+        <% current_user_categories.each do |category|   %>
+        <%= button_to "Open When... You're #{category.name}", category_posts_path(category.id), :method => "get" %>
+        <% end %>
+  <% end %>
 <% end %>
 <p><%= flash[:message] %></p>
 
