@@ -1,0 +1,52 @@
+<%= flash[:search] %>
+<h4> All your notes </h4>
+
+<br>
+
+
+<%= form_tag(keepsakes_path, method: "get") do %>
+<%= label_tag(:q, "Search for") %>
+<%= select_tag "search_by",options_for_select([ "tag", "sender" ], :search_input) %>
+<%= text_field_tag(:q) %>
+<%= submit_tag("Search", class: 'btn btn-sm btn-primary') %>
+<% end %>
+<br>
+<br>
+
+
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+
+<% @posts.each do |post| %>
+  <tr>
+  <td style="padding: 0 10px 0 0">
+    <% if post.read_status == false%>
+      <%= image_tag 'heart.png', height: 10, width: 10 %>
+    <% end %>
+  </td>
+    <td style="padding: 0 10px 0 0">
+      <% if post.read_status == false%>
+        <strong><%= link_to post.title, post_read_path(post), method: :post %></strong>
+      <% else %>
+        <%= link_to post.title, post_read_path(post), method: :post %>
+      <% end %></td>
+
+    <td style="padding: 0 10px 0 0">
+      <% if post.read_status == true %>
+          <%= button_to "Mark as unread", post_unread_path(post), class: 'btn btn-xs btn-primary' %>
+      <% end %>
+    </td>
+    </tr>
+<% end %>
+
+</table>
+
+<br>
+<br>
+<%= link_to "All Envelopes", home_path%>

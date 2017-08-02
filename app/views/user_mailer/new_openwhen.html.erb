@@ -4,6 +4,23 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
+    <% if @user.name == @user.email %>
+          <h1>Lucky duck!</h1>
+          <img src="https://media.giphy.com/media/e8n2clEN45Yre/giphy.gif" alt="duck">
+          <p>
+            Someone has sent you an OpenWhen!
+          </p>
+            To see it, login here: <%= @url %>
+          </p>
+            Your username is: <%= @user.username %>.<br>
+          </p>
+          <p>
+            Your password is: OpenWhen (case sensitive!)
+          </p>Enjoy your special message!</p>
+      <% else %>
+
+
+
           <h1>Lucky duck!</h1>
           <img src="https://media.giphy.com/media/e8n2clEN45Yre/giphy.gif" alt="duck">
           <p>
@@ -17,6 +34,6 @@
           </p>
           </p>Enjoy your special message!</p>
 
-
+        <% end %>
   </body>
 </html>

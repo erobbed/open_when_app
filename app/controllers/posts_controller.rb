@@ -4,6 +4,14 @@ class PostsController < ApplicationController
     @post = Post.new
     @post.tags.build(name: "tag1")
     @post.tags.build(name: "tag2")
+    all_senders_and_receivers = []
+    current_user.posts.each do |post|
+      all_senders_and_receivers << post.recipient_email
+    end
+    current_user.opens.each do |post|
+      all_senders_and_receivers <<  User.find_by(id: post.sender_id).email
+    end
+    @uniq_senders_receivers = all_senders_and_receivers.uniq
   end
 
   def create
@@ -94,6 +102,10 @@ class PostsController < ApplicationController
     @post.read_time = nil
     @post.save
     redirect_to category_posts_path(@post.category)
+  end
+
+  def all_posts
+    @posts = Post.where(recipient_id: current_user.id)
   end
 
 

@@ -15,6 +15,12 @@
     <%= tag.text_field :name %><br>
   <% end %>
   <%= f.label :recipient_email %>
-  <%= f.text_field :recipient_email %><br>
+  <%= f.text_field :recipient_email, list: "recipient_autocomplete" %>
+  <datalist id="recipient_autocomplete">
+    <% @uniq_senders_receivers.each do |email| %>
+    <option value="<%=email%>" >
+      <% end %>
+   </datalist>
+  <br>
   <%= f.submit "Send an OpenWhen", class: 'btn btn-large btn-primary' %>
 <% end %>
