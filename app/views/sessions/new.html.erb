@@ -1,25 +1,28 @@
-<div class="container"  role="main">
+<div class="container-fluid"  role="main">
       <div class="theme-showcase" role="main">
 
-  <div class="left-pic">
-    <img src="https://media.giphy.com/media/3oz8xO3S4mUmacTEl2/giphy.gif" width="380" height="380">
+  <div class="left-align">
+    <div class="row">
+      <img src="https://media.giphy.com/media/3oz8xO3S4mUmacTEl2/giphy.gif" width="380" height="380">
+    </div>
   </div>
 
-  <div class="right-info">
-    <h1> Welcome to Open When!</h1>
+  <div class="right-align">
+    <div class="row">
+      <h1> Welcome to Open When!</h1>
+      <p><%= flash[:message] %> </p>
+        <%= form_for :session  do |f| %>
+      <div class="form-group">
+        <%= f.label :username %><br>
+        <%= f.text_field :username %><br>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %><br>
+        <%= f.password_field :password %><br>
+      </div>
+        <%= f.submit "Log In", class: 'btn btn-large btn-primary'%>
+        or <%= link_to "Sign Up!", new_user_path %>
+        <% end %>
+    </div>
   </div>
-
-
-
-<p><%= flash[:message] %> </p>
-
-<%= form_for :session  do |f| %>
-<%= f.label :username %>
-<%= f.text_field :username %><br>
-<%= f.label :password %>
-<%= f.password_field :password %><br>
-<%= f.label :password_confirmation %>
-<%= f.password_field :password_confirmation %><br>
-<%= f.submit "Log In", class: 'btn btn-large btn-primary'%>
-or <%= link_to "Sign Up!", new_user_path %>
-<% end %>
+</div>
