@@ -19,7 +19,6 @@
   <tr>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 
@@ -38,9 +37,6 @@
       <% end %></td>
 
     <td style="padding: 0 10px 0 0">
-      <% if post.read_status == true %>
-          <%= button_to "Mark as unread", post_unread_path(post), class: 'btn btn-xs btn-primary' %>
-      <% end %>
     </td>
     </tr>
 <% end %>
