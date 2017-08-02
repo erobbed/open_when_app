@@ -1,11 +1,6 @@
 <h1>Welcome, <%=current_user.name.titleize %>! </h1><br><br>
 
-    <!-- <div class="center">
-      <a href="/signin">Sign In</a>
-      <a href="/users/new">Sign Up</a>
-    </div> -->
-
-<%= flash[:send_success]  %>
+<%= flash[:send_success]  %><br>
 <br>
 <div class="col-md-4 text-left">
   <% if logged_in?  %>
@@ -21,4 +16,3 @@
     <% end %>
   <% end %>
 </div>
-<p><%= flash[:message] %></p>

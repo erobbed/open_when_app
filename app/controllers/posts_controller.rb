@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     end
     @post = Post.new(post_params)
     if @post.save
+      UserMailer.new_openwhen(@recipient).deliver_now
       flash[:send_success] = "Success! Your OpenWhen has been sent! Rejoice!"
       redirect_to '/'
     else
