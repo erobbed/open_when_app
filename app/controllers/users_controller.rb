@@ -9,7 +9,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMailer.welcome_email(@user).deliver_now
-      redirect_to user_path(@user)
+      session[:user_id] = @user.id
+      redirect_to home_path
     else
       flash[:message] = "Please try a unique username / email combination."
       redirect_to new_user_path

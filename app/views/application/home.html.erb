@@ -6,7 +6,8 @@
     </div> -->
 
 <%= flash[:send_success]  %>
-<div class="col-md-4 text-center">
+<br>
+<div class="col-md-4 text-left">
   <% if logged_in?  %>
     <%= button_to "Write a new OpenWhen", new_post_path, method: :get, class: 'btn btn-large btn-primary' %><br>
       <% if !current_user.opens.empty? %>
@@ -14,7 +15,7 @@
          <% if current_user_category_post_count(category) > 1 %>
           <%= button_to "Open When... You're #{category.name}", category_posts_path(category), method: :get, class: 'btn btn-large btn-primary' %>
         <% else %>
-          <%= button_to "Open When... You're #{category.name}", post_path(current_user_category_posts(category)[0]), method: :get, class: 'btn btn-large btn-primary' %>
+          <%= button_to "Open When... You're #{category.name}", post_read_path(current_user_category_posts(category)[0]), method: :post, class: 'btn btn-large btn-primary' %>
         <% end %>
       <% end %>
     <% end %>

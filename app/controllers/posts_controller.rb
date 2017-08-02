@@ -46,7 +46,7 @@ class PostsController < ApplicationController
         end
       end
     else
-      @posts = Post.all
+      @posts = Post.all.select {|post| post.recipient_id == current_user.id && post.category.id == params[:category_id].to_i}
     end
     # <%= form_tag(category_posts_path(params[:category_id]), method: "get") do %>
     # <%= label_tag(:q, "Search for") %>

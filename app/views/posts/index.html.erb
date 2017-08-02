@@ -2,8 +2,6 @@
 <h4> Open when you're: <%= Category.find(params[:category_id]).name %> </h4>
 
 <br>
-<% selected_posts = @posts.select {|post| post.recipient_id == current_user.id} %>
-
 
 
 <%= form_tag(category_posts_path(params[:category_id]), method: "get") do %>
@@ -25,7 +23,7 @@
   </tr>
 
 
-<% selected_posts.each do |post| %>
+<% @posts.each do |post| %>
   <tr>
   <td style="padding: 0 10px 0 0">
     <% if post.read_status == false%>
@@ -48,3 +46,7 @@
 <% end %>
 
 </table>
+
+<br>
+<br>
+<%= link_to "All OpenWhens", home_path%>
