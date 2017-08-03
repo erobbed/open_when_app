@@ -19,7 +19,7 @@
  @import url('https://fonts.googleapis.com/css?family=Leckerli+One');
 
 
- h1{
+ h1, #logo {
    font-family: 'Leckerli One', cursive;
  }
 
@@ -36,3 +36,20 @@
     background-image: url("http://print21.com.au/wp-content/uploads/2016/08/envelope-359.jpg");
     background-size: 280px 120px;
  }
+
+.navbar-nav {
+  float: none;
+}
+
+.navbar-inverse {
+  background-color: rgb(255, 189, 22);
+  border: none;
+}
+
+.nav.navbar-nav.navbar-right li a {
+    color: black;
+}
+
+.nav.navbar-nav.navbar-right li a:hover {
+    color: white;
+}
