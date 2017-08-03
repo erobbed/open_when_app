@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+     <strong> Total minutes spent by all users on platform: </strong> <%= @total_duration %><br>
+     <strong> Total notes exchanged: </strong> <%= Post.all.count %><br>
+
+     <strong> Percentage who send more than they receive: </strong> <%= @ratio %>%<br>
+  </body>
+</html>

@@ -31,5 +31,13 @@ class ApplicationController < ActionController::Base
     category.posts.where(recipient_id: current_user.id)
   end
 
+  def allthefeels
+    @total_duration = Visit.all[0...-1].map do |visit|
+      (visit.ended_at - visit.started_at)/60
+    end.inject(:+).round(2)
+
+    top_senders = User.all.select{|user| user.posts.count > user.opens.count}
+    @ratio = ((top_senders.count.to_f / User.all.count) * 100).round(0)
+  end
 
 end
