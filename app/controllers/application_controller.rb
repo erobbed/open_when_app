@@ -32,12 +32,18 @@ class ApplicationController < ActionController::Base
   end
 
   def allthefeels
-    @total_duration = Visit.all[0...-1].map do |visit|
-      (visit.ended_at - visit.started_at)/60
-    end.inject(:+).round(2)
+    all_durations = Visit.all[0...-1].map {|visit| (visit.ended_at - visit.started_at)/60}
+
+    @total_duration = all_durations.inject(:+).round(2)
+    @longest_duration = all_durations.max.round(2)
 
     top_senders = User.all.select{|user| user.posts.count > user.opens.count}
     @ratio = ((top_senders.count.to_f / User.all.count) * 100).round(0)
+
+    @most_popular_category = Category.all.max_by {|category| category.posts.count}
+
+    @top_three_tags = Tag.all.max_by(3) {|tag| tag.posts.count}.reverse
+
   end
 
 end
