@@ -6,6 +6,11 @@
   </head>
   <body>
     <h1>All the Feels...</h1>
+
+     <strong> Your longest visit: </strong> <%= current_user.max_duration %> minutes <br>
+     <strong> Average time you've spent on OpenWhen: </strong> <%= current_user.average_duration%> minutes<br>
+
+
      <strong> Total users: </strong> <%= User.all.count %><br>
      <strong> Total minutes spent by all users on platform: </strong> <%= @total_duration %><br>
      <strong> Longest visit to OpenWhen: </strong> <%= @longest_duration %> minutes<br>

@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :logged_in?, :current_user, :current_user_categories, :current_user_category_post_count, :current_user_category_posts
 
+  # , :user_average_duration, :max_user_duration
+
 
   def logged_in?
     !!session[:user_id]
@@ -43,7 +45,17 @@ class ApplicationController < ActionController::Base
     @most_popular_category = Category.all.max_by {|category| category.posts.count}
 
     @top_three_tags = Tag.all.max_by(3) {|tag| tag.posts.count}.reverse
-
   end
+
+  # def user_average_duration
+  #   user_durations = current_user.visits[0...-1].map {|visit| (visit.ended_at - visit.started_at)/60}
+  #   total_user_duration = user_durations.inject(:+)
+  #   (total_user_duration / current_user.visits[0...-1].count).round(2)
+  # end
+  #
+  # def max_user_duration
+  #   user_durations = current_user.visits[0...-1].map {|visit| (visit.ended_at - visit.started_at)/60}
+  #   user_durations.max.round(2)
+  # end
 
 end
