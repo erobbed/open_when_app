@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :logged_in?, :current_user, :current_user_categories, :current_user_category_post_count, :current_user_category_posts
+  helper_method :logged_in?, :current_user, :current_user_categories, :current_user_category_post_count, :current_user_category_posts, :post_color_rgbs
 
   # , :user_average_duration, :max_user_duration
 
@@ -45,6 +45,10 @@ class ApplicationController < ActionController::Base
     @most_popular_category = Category.all.max_by {|category| category.posts.count}
 
     @top_three_tags = Tag.all.max_by(3) {|tag| tag.posts.count}.reverse
+  end
+
+  def post_color_rgbs
+    [[88, 193, 225], [239, 164, 97], [238, 160, 186], [203, 223, 136], [51, 146, 202], [186, 144, 192], [234, 87, 95]]
   end
 
   # def user_average_duration

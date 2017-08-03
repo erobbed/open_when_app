@@ -17,12 +17,12 @@
  @import "bootstrap";
  @import url('https://fonts.googleapis.com/css?family=Zilla+Slab+Highlight:700');
  @import url('https://fonts.googleapis.com/css?family=Leckerli+One');
+ @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 
 
  h1, #logo {
    font-family: 'Leckerli One', cursive;
  }
-
 
  .btn-custom {
     height: 120px;
@@ -37,8 +37,41 @@
     background-size: 280px 120px;
  }
 
+.btn-postit-unread{
+  height: 200px;
+  width: 200px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 130%;
+  color: black;
+  white-space: normal;
+  border-color: rgb(220, 150, 127);
+  border-width: 3px;
+  background-color: rgb(139, 199, 236);
+  background-image: url(heart.png);
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: 50% 25%;
+
+}
+
+.btn-postit-read{
+  height: 200px;
+  width: 200px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 130%;
+  color: black;
+  white-space: normal;
+  border: none;
+  background-color: rgb(139, 199, 236);
+}
+
+
 .navbar-nav {
   float: none;
+}
+
+.icon-bar {
+  background-color: black;
 }
 
 .navbar-inverse {
@@ -52,4 +85,8 @@
 
 .nav.navbar-nav.navbar-right li a:hover {
     color: white;
+}
+
+.navbar-toggle {
+  border: none;
 }

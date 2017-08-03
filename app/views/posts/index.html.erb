@@ -1,7 +1,12 @@
 <%= flash[:search] %>
+
+<%= link_to "All OpenWhens", home_path%>
+
+
 <h4> Open when you're: <%= Category.find(params[:category_id]).name %> </h4>
 
 <br>
+
 
 
 <%= form_tag(category_posts_path(params[:category_id]), method: "get") do %>
@@ -14,39 +19,33 @@
 <br>
 
 
+<% @posts.each do |post|   %>
+<% if post.read_status == false%>
+   <div class="col-sm-4">
+     <div class="card">
+       <div class="card-block">
+         <h3 class="card-title"></h3>
+         <p class="card-text"></p>
+           <%= button_to "#{post.title}", post_read_path(post), method: :post, class: 'btn btn-postit-unread' %>
+       </div>
+     </div>
+   </div>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
+   <% else %>
+   <div class="col-sm-4">
+     <div class="card">
+       <div class="card-block">
+         <h3 class="card-title"></h3>
+         <p class="card-text"></p>
+           <%= button_to "#{post.title}", post_unread_path(post), class: 'btn btn-postit-read' %>
+       </div>
+     </div>
+   </div>
 
-<% @posts.each do |post| %>
-  <tr>
-  <td style="padding: 0 10px 0 0">
-    <% if post.read_status == false%>
-      <%= image_tag 'heart.png', height: 10, width: 10 %>
-    <% end %>
-  </td>
-    <td style="padding: 0 10px 0 0">
-      <% if post.read_status == false%>
-        <strong><%= link_to post.title, post_read_path(post), method: :post %></strong>
-      <% else %>
-        <%= link_to post.title, post_read_path(post), method: :post %>
-      <% end %></td>
-
-    <td style="padding: 0 10px 0 0">
-      <% if post.read_status == true %>
-          <%= button_to "Mark as unread", post_unread_path(post), class: 'btn btn-xs btn-primary' %>
-      <% end %>
-    </td>
-    </tr>
+   <% end %>
 <% end %>
 
-</table>
 
 <br>
 <br>
-<%= link_to "All OpenWhens", home_path%>
