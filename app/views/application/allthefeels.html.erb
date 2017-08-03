@@ -7,16 +7,16 @@
   <body>
     <h1>All the Feels...</h1>
 
-     <strong> Your longest visit: </strong> <%= current_user.max_duration %> minutes <br>
-     <strong> Average time you've spent on OpenWhen: </strong> <%= current_user.average_duration%> minutes<br>
+     <strong> Your longest visit: </strong> <%= current_user.max_duration.round(2) %> minutes <br>
+     <strong> Average time you've spent on OpenWhen: </strong> <%= current_user.average_duration.round(2) %> minutes<br>
 
 
      <strong> Total users: </strong> <%= User.all.count %><br>
-     <strong> Total minutes spent by all users on platform: </strong> <%= @total_duration %><br>
-     <strong> Longest visit to OpenWhen: </strong> <%= @longest_duration %> minutes<br>
-     <strong> Average minutes spent per visit to OpenWhen: </strong> <%= @total_duration / Visit.all.count %><br>
+     <strong> Total minutes spent by all users on platform: </strong> <%= @total_duration.round(2) %><br>
+     <strong> Longest visit to OpenWhen: </strong> <%= @longest_duration.round(2) %> minutes<br>
+     <strong> Average minutes spent per visit to OpenWhen: </strong> <%= (@total_duration / Visit.all.count).round(2) %><br>
      <strong> Total notes exchanged: </strong> <%= Post.all.count %><br>
-     <strong> Percentage who send more than they receive: </strong> <%= @ratio %>%<br>
+     <strong> Percentage who send more than they receive: </strong> <%= @ratio.round(0) %>%<br>
      <strong> Most popular category: </strong> <%= @most_popular_category.name %><br>
      <strong> Most popular tags:</strong>
         <ol>

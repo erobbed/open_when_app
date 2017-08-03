@@ -12,14 +12,22 @@ class User < ApplicationRecord
 
 
   def average_duration
-    user_durations = self.visits[0...-1].map {|visit| (visit.ended_at - visit.started_at)/60}
-    total_user_duration = user_durations.inject(:+)
-    (total_user_duration / self.visits[0...-1].count).round(2)
+    if self.visits.count > 1
+      user_durations = self.visits[0...-1].map {|visit| (visit.ended_at - visit.started_at)/60}
+      total_user_duration = user_durations.inject(:+)
+      (total_user_duration / self.visits[0...-1].count).round(2)
+    else
+      total_user_duration = (Time.now - self.visits[0].started_at)/60
+    end
   end
 
   def max_duration
-    user_durations = self.visits[0...-1].map {|visit| (visit.ended_at - visit.started_at)/60}
-    user_durations.max.round(2)
+    if self.visits.count > 1
+      user_durations = self.visits[0...-1].map {|visit| (visit.ended_at - visit.started_at)/60}
+      user_durations.max.round(2)
+    else
+      user_duration = (Time.now - self.visits[0].started_at)/60
+    end
   end
 
 

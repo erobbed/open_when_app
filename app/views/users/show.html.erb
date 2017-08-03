@@ -5,7 +5,10 @@
 <br>
 <strong>OpenWhens written:</strong> <%= current_user.posts.count %><br>
 <strong>OpenWhens received:</strong> <%= current_user.opens.count %><br>
-<strong>Date joined:</strong> <%= current_user.created_at.strftime("%A, %B %d, %Y at %l:%M %P") %>
+<strong>Date joined:</strong> <%= current_user.created_at.strftime("%A, %B %d, %Y at %l:%M %P") %><br><br>
+
+<strong> Your longest visit: </strong> <%= current_user.max_duration.round(2) %> minutes <br>
+<strong> Average time you've spent on OpenWhen: </strong> <%= current_user.average_duration.round(2) %> minutes<br>
 
 <br>
 <br>

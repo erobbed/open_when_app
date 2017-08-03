@@ -10,6 +10,8 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.welcome_email(@user).deliver_now
       session[:user_id] = @user.id
+      visit = Visit.create(user_id: @user.id, started_at: Time.now)
+      session[:visit_id] = visit.id
       redirect_to home_path
     else
       flash[:message] = "Please try a unique username / email combination."
