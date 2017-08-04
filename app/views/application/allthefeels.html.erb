@@ -12,18 +12,20 @@
 
 
      <strong> Total users: </strong> <%= User.all.count %><br>
-     <strong> Total minutes spent by all users on platform: </strong> <%= @total_duration.round(2) %><br>
-     <strong> Longest visit to OpenWhen: </strong> <%= @longest_duration.round(2) %> minutes<br>
-     <strong> Average minutes spent per visit to OpenWhen: </strong> <%= (@total_duration / Visit.all.count).round(2) %><br>
-     <strong> Total notes exchanged: </strong> <%= Post.all.count %><br>
-     <strong> Percentage who send more than they receive: </strong> <%= @ratio.round(0) %>%<br>
-     <strong> Most popular category: </strong> <%= @most_popular_category.name %><br>
-     <strong> Most popular tags:</strong>
-        <ol>
-          <% @top_three_tags.each do |tag| %>
-          <li><%= tag.name %>: <%=Tag.where(name: tag.name).count%> notes</li>
-          <%end%>
-        </ol>
+     <% if User.all.count > 1 %>
+       <strong> Total minutes spent by all users on platform: </strong> <%= @total_duration.round(2) %><br>
+       <strong> Longest visit to OpenWhen: </strong> <%= @longest_duration.round(2) %> minutes<br>
+       <strong> Average minutes spent per visit to OpenWhen: </strong> <%= (@total_duration / Visit.all.count).round(2) %><br>
+       <strong> Total notes exchanged: </strong> <%= Post.all.count %><br>
+       <strong> Percentage who send more than they receive: </strong> <%= @ratio.round(0) %>%<br>
+       <strong> Most popular category: </strong> <%= @most_popular_category.name %><br>
+       <strong> Most popular tags:</strong>
+          <ol>
+            <% @top_three_tags.each do |tag| %>
+            <li><%= tag.name %>: <%=Tag.where(name: tag.name).count%> notes</li>
+            <%end%>
+          </ol>
+    <% end %>
   <br>
 
 

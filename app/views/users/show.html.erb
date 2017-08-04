@@ -1,15 +1,38 @@
-<strong>Name:</strong> <%= current_user.name.titleize %><br>
-<strong>Username:</strong> <%= current_user.username %><br>
-<strong>Email:</strong> <%= current_user.email %><br>
+<div class="container">
+        <div class="col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4><%= current_user.name.titleize %></h4>
+                        <p>
+                          <i class="glyphicon glyphicon-user"></i> username: <%= current_user.username %>
+                          <br />
+                            <i class="glyphicon glyphicon-envelope"></i> <%= current_user.email %>
+                            <br />
+                            <i class="glyphicon glyphicon-calendar"></i> joined <%= current_user.created_at.strftime("%B %d, %Y at %l:%M %P") %> </p>
+                            <%= button_to "Edit account", edit_user_path(current_user), method: :get, class: 'btn btn-large btn-primary' %>
+              </div>
+            </div>
+        </div>
+    </div>
 
-<br>
-<strong>OpenWhens written:</strong> <%= current_user.posts.count %><br>
-<strong>OpenWhens received:</strong> <%= current_user.opens.count %><br>
-<strong>Date joined:</strong> <%= current_user.created_at.strftime("%A, %B %d, %Y at %l:%M %P") %><br><br>
+<div class="col-md-6">
+  <div class="well well-sm">
+      <div class="row">
+          <div class="col-md-12">
+            <h4> Your Notes </h4>
+            <p>
+              <i class="glyphicon glyphicon-envelope"></i> <strong> Sent: </strong> <%= current_user.posts.count %>  ||
+              <i class="glyphicon glyphicon-envelope"></i><strong> Received: </strong><%= current_user.opens.count %>
+              <br />
+              <i class="glyphicon glyphicon-time"></i> <strong> Longest visit: </strong><%= current_user.max_duration.round(2) %> minutes
+              <br />
+              <i class="glyphicon glyphicon-time"></i> <strong> Average visit: </strong><%= current_user.average_duration.round(2) %> minutes
+              <br />
+              <%= button_to "See more stats", analytics_path, method: :get, class: 'btn btn-large btn-primary' %>
+          </div>
+      </div>
+  </div>
+</div>
 
-<strong> Your longest visit: </strong> <%= current_user.max_duration.round(2) %> minutes <br>
-<strong> Average time you've spent on OpenWhen: </strong> <%= current_user.average_duration.round(2) %> minutes<br>
-
-<br>
-<br>
-<%= link_to "Edit account", edit_user_path(current_user) %>
+</div>
