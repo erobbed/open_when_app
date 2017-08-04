@@ -109,7 +109,6 @@ class PostsController < ApplicationController
   end
 
 
-
   private
   def post_params
     params.require(:post).permit(:title, :content, :category_id, :sender_id, :recipient_id, :recipient_email, :read_status, :read_time, tags_attributes: [:name])

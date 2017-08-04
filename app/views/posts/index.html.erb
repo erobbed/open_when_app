@@ -1,51 +1,43 @@
 <%= flash[:search] %>
 
 <%= link_to "All OpenWhens", home_path%>
-
-
 <h4> Open when you're: <%= Category.find(params[:category_id]).name %> </h4>
-
 <br>
 
 
 
 <%= form_tag(category_posts_path(params[:category_id]), method: "get") do %>
-<%= label_tag(:q, "Search for") %>
-<%= select_tag "search_by",options_for_select([ "tag", "sender" ], :search_input) %>
-<%= text_field_tag(:q) %>
-<%= submit_tag("Search", class: 'btn btn-sm btn-primary') %>
+  <%= label_tag(:q, "Search for") %>
+  <%= select_tag "search_by",options_for_select([ "tag", "sender" ], :search_input) %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search", class: 'btn btn-sm btn-primary') %>
 <% end %>
 <br>
 <br>
-
 
 <% @posts.each do |post|   %>
-<% if post.read_status == false%>
-   <div class="col-sm-4">
-     <div class="card">
-       <div class="card-block">
-         <h3 class="card-title"></h3>
-         <p class="card-text"></p>
-           <%= button_to "#{post.title}", post_read_path(post), method: :post, class: 'btn btn-postit-unread' %>
-       </div>
+    <% if post.read_status == false%>
+     <div class="col-sm-4">
+       <div class="card">
+         <div class="card-block">
+           <h3 class="card-title"></h3>
+           <p class="card-text"></p>
+            <%= button_to "#{post.title}", post_read_path(post), method: :post, class: 'btn btn-postit-unread' %>
+            <!-- <input type="checkbox" value=""> -->
+        </div>
+      </div>
      </div>
-   </div>
-
-
-   <% else %>
-   <div class="col-sm-4">
-     <div class="card">
-       <div class="card-block">
-         <h3 class="card-title"></h3>
-         <p class="card-text"></p>
-           <%= button_to "#{post.title}", post_unread_path(post), class: 'btn btn-postit-read' %>
-       </div>
+     <% else %>
+     <div class="col-sm-4">
+      <div class="card">
+        <div class="card-block">
+          <h3 class="card-title"></h3>
+          <p class="card-text"></p>
+             <%= button_to "#{post.title}", post_read_path(post), class: 'btn btn-postit-read' %>
+        </div>
+      </div>
      </div>
-   </div>
-
    <% end %>
 <% end %>
-
-
 <br>
 <br>

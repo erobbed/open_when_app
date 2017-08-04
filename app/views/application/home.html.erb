@@ -1,14 +1,14 @@
-<h1>Welcome, <%=current_user.name.titleize %>! </h1><br><br>
-
-<%= flash[:send_success]  %><br>
-<br>
-<div>
-  <% if logged_in?  %>
+<div class="col-sm-6" >
+<h1>Welcome, <%=current_user.name.titleize %>! </h1><br>
+</div>
+<div class="col-sm-6 new-post">
     <%= button_to "Write a new OpenWhen", new_post_path, method: :get, class: 'btn btn-large btn-primary' %><br>
+</div>
+<%= flash[:send_success]  %><br>
+<div class="col-sm-12">
       <% if !current_user.opens.empty? %>
         <% current_user_categories.each do |category|   %>
          <% if current_user_category_post_count(category) > 1 %>
-
            <div class="col-sm-4">
              <div class="card">
                <div class="card-block">
@@ -18,22 +18,17 @@
                </div>
              </div>
            </div>
-
         <% else %>
-
           <div class="col-sm-4">
             <div class="card">
               <div class="card-block">
                 <h3 class="card-title"></h3>
                 <p class="card-text"></p>
-                      <%= button_to "Open When... You're #{category.name}", post_read_path(current_user_category_posts(category)[0]), method: :post, class: 'btn btn-custom' %>
+                  <%= button_to "Open When... You're #{category.name}", post_read_path(current_user_category_posts(category)[0]), method: :post, class: 'btn btn-custom' %>
               </div>
             </div>
           </div>
-
-
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
 </div>
