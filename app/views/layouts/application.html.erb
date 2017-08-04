@@ -27,10 +27,25 @@
             <ul class="nav navbar-nav">
               <li class="active" id="logo"><a href="<%= home_path %>">OpenWhen</a></li>
                   <% if logged_in? %>
+
+                  <!-- our search -->
+
+                    <li>
+                  <%= form_tag(posts_path, method: "get", class: 'navbar-form navbar-left', role: 'search') do %>
+                    <div class="form-group">
+                    <%= text_field_tag(:q, "", class: 'form-control', placeholder: 'Search by tag/ sender') %>
+                    </div>
+                    <%= submit_tag("Search", class: 'btn btn-default') %>
+                  <% end %>
+                </li>
+
+                  <!-- end search  -->
+
+
                   <ul class="nav navbar-nav navbar-right">
-                     <li><%= link_to "Account", user_path(current_user)%> </li>
-                     <li><%= link_to "All the Feels", analytics_path%> </li>
-                     <li><%= link_to('Log Out', logout_path, method: 'DELETE') %></li>
+                    <li ><a href="<%=user_path(current_user)%>"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+                    <li ><a href="<%=analytics_path%>"><span class="glyphicon glyphicon-tasks"></span> All the Feels</a></li>
+                     <li><a href="<%=logout_path%>" data-method="delete"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
                   </ul>
                  <% else %>
                  <ul class="nav navbar-nav navbar-right pull-right">
@@ -39,6 +54,11 @@
                 </ul>
                 <% end %>
               </li>
+
+
+
+
+<!-- end               -->
             </ul>
           </div><!--/.nav-collapse -->
         </div>

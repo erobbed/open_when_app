@@ -1,19 +1,13 @@
 <%= flash[:search] %>
-
-<%= link_to "All OpenWhens", home_path%>
-<h4> Open when you're: <%= Category.find(params[:category_id]).name %> </h4>
 <br>
 
-
-
-<%= form_tag(category_posts_path(params[:category_id]), method: "get") do %>
-  <%= label_tag(:q, "Search for") %>
-  <%= select_tag "search_by",options_for_select([ "tag", "sender" ], :search_input) %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search", class: 'btn btn-sm btn-primary') %>
+<%= link_to "All envelopes", home_path%>
+<% if params[:category_id] %>
+<h4> Open when you're: <%= Category.find(params[:category_id]).name %> </h4>
 <% end %>
 <br>
-<br>
+
+
 
 <% @posts.each do |post|   %>
     <% if post.read_status == false%>

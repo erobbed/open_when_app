@@ -32,30 +32,39 @@ class PostsController < ApplicationController
     end
   end
 
+
   def index
     if params[:q]
-      if params["search_by"] == "sender"
-        search_user = User.find_by(name: params[:q])
-          if search_user
-            @posts = Post.where(sender_id: search_user.id)
-          else
-            flash[:search] = "Sorry! Your search did not turn up any results."
-            @posts = Post.all
-            render :index
-          end
+      user_search = User.where("name LIKE ? OR username LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+      tag_search = Tag.where("name LIKE ?", "%#{params[:q]}%")
+      search_items = !user_search.empty? || !tag_search.empty?
+      if search_items && !user_search.empty?
+        @posts =
+        user_search.map do |search_result|
+          Post.where(sender_id: search_result.id, recipient_id: current_user.id)
+        end.flatten.uniq
+      elsif search_items && !tag_search.empty?
+        # first, find all the PostTag objects
+        # then, find all the posts
+        all_post_tags =
+        tag_search.map do |search_result|
+          PostTag.where(tag_id: search_result.id)
+        end.flatten.uniq
+        @posts =
+        all_post_tags.map do |post_tag_object|
+          Post.find_by(id: post_tag_object.post_id)
+        end.flatten.uniq
       else
-        #  params["search_by"] == "tag"
-        search_tag = Tag.find_by(name: params[:q])
-        if search_tag
-          @posts = Post.all.select {|post| post.tags.where(tag_id: search_tag.id)}
-        else
-          flash[:search] = "Sorry! Your search did not turn up any results."
-          @posts = Post.all
-          render :index
-        end
+        flash[:search] = "Sorry! Your search did not turn up any results."
+        @posts = Post.where(recipient_id: current_user.id)
+        render :index
       end
     else
-      @posts = Post.all.select {|post| post.recipient_id == current_user.id && post.category.id == params[:category_id].to_i}
+      if params[:category_id]
+        @posts = Post.all.select {|post| post.recipient_id == current_user.id && post.category.id == params[:category_id].to_i}
+      else
+        @posts = Post.all.select{|post| post.recipient_id == current_user.id}
+      end
     end
     # <%= form_tag(category_posts_path(params[:category_id]), method: "get") do %>
     # <%= label_tag(:q, "Search for") %>

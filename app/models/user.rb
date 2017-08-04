@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :posts, :foreign_key => 'sender_id'
   has_many :opens, :foreign_key => 'recipient_id', :class_name => "Post"
+  has_many :categories, through: :opens
+  # looking at all the categories for which a person has received an OpenWhen
   has_many :visits
 
   has_secure_password

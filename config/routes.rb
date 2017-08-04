@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :post_tags
-  get '/posts', to: 'posts#all_posts', as: 'keepsakes'
   resources :categories
   resources :posts
   resources :users

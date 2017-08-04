@@ -54,6 +54,21 @@
 
 }
 
+.btn-default {
+  border-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.2)
+}
+
+.btn-default:hover{
+  color: white;
+  background-color: black;
+  border: none;
+}
+
+.form-control {
+  border: none;
+}
+
 .btn-postit-read{
   height: 200px;
   width: 200px;
