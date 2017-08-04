@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :name, :username, :email, presence: true
   validates :username, uniqueness: true
   validates :email, uniqueness: true
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
 
 
 

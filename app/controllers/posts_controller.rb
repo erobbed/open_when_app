@@ -57,7 +57,7 @@ class PostsController < ApplicationController
       else
         flash[:search] = "Sorry! Your search did not turn up any results."
         @posts = Post.where(recipient_id: current_user.id)
-        render :index
+        redirect_to posts_path
       end
     else
       if params[:category_id]

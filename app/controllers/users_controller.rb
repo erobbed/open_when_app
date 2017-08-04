@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       session[:visit_id] = visit.id
       redirect_to home_path
     else
-      flash[:message] = "Please try a unique username / email combination."
+      flash[:message] = "Please try a unique username / email combination or your email is invalid"
       redirect_to new_user_path
     end
   end
