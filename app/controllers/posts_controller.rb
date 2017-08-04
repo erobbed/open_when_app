@@ -2,8 +2,8 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.tags.build(name: "tag1")
-    @post.tags.build(name: "tag2")
+    @post.tags.build(name: "")
+    @post.tags.build(name: "")
     all_senders_and_receivers = []
     current_user.posts.each do |post|
       all_senders_and_receivers << post.recipient_email
