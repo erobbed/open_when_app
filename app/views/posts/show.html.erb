@@ -1,14 +1,19 @@
-
+<div class="col-sm-6">
 <h1><%= @post.title %></h1><br>
-<p><%= @post.content %></p><br>
-From: <%= User.find_by(id: @post.sender_id).name.titleize %>
-<div class="tags">Tags:
-<% @post.tags.each do |tag| %>
-  <%= tag.name %>
-<% end %>
-<br>
-<br>
-Read: <%= @post.read_time.strftime("%A, %B %d, %Y at %l:%M %P") %>
-</div>
 
+<strong>From:</strong> <%= User.find_by(id: @post.sender_id).name.titleize %>
+
+<br><br>
+<p class="well"><%= @post.content %></p>
+Read: <%= @post.read_time.strftime("%A, %B %d, %Y at %l:%M %P") %>
+<br><br>
+<div class="float-left"><strong>Tags: </strong>
+</div><br>
+  <% @post.tags.each do |tag| %>
+  <div class="col-sm-2">
+    <button type="button" class="btn btn-xs btn-primary"><%= tag.name %></button>
+  </div>
+  <% end %>
+<br><br>
 <%= link_to "Back", category_posts_path(@post.category)%>
+</div>

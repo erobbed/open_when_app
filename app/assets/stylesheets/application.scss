@@ -38,6 +38,13 @@
     background-repeat: no-repeat;
  }
 
+ .btn-group{
+   padding: none;
+   margin-left: 0;
+   margin-right: 0;
+   position: relative;
+ }
+
 .btn-postit-unread{
   height: 200px;
   width: 200px;

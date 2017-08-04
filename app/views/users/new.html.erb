@@ -1,26 +1,29 @@
 <p><%= flash[:message] %></p>
 
+<div class="col-sm-4">
 
 <%= form_for @user do |f| %>
 <div class="form-group">
-  <%= f.label :name %><br>
-  <%= f.text_field :name, placeholder: "name" %><br>
+  <%= f.label :name %>
+  <%= f.text_field :name, placeholder: "name", class: "form-control" %>
 </div>
 <div class="form-group">
-  <%= f.label :username %><br>
-  <%= f.text_field :username, placeholder: "username" %><br>
+  <%= f.label :username %>
+  <%= f.text_field :username, placeholder: "username", class: "form-control" %>
 </div>
 <div class="form-group">
-  <%= f.label :email %><br>
-  <%= f.text_field :email, placeholder: "example@example.com" %><br>
+  <%= f.label :email %>
+  <%= f.text_field :email, placeholder: "example@example.com", class: "form-control" %>
 </div>
 <div class="form-group">
-  <%= f.label :password %><br>
-  <%= f.password_field :password, placeholder: "your password here" %><br>
+  <%= f.label :password %>
+  <%= f.password_field :password, placeholder: "your password here", class: "form-control" %>
 </div>
 <div class="form-group">
-  <%= f.label :password_confirmation %><br>
-  <%= f.password_field :password_confirmation, placeholder: "confirm password" %><br>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, placeholder: "confirm password", class: "form-control" %>
 </div>
 <%= f.submit "Sign up", class: 'btn btn-large btn-primary' %>
 <% end %>
+
+</div>

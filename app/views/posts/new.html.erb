@@ -1,26 +1,30 @@
 
 <%= flash[:send_failure]  %>
 
+<div class="col-sm-6">
+
 
 <%= form_for @post do |f| %>
-  <%=f.hidden_field :sender_id, value: current_user.id %><br>
-  <%= f.label :'You want your loved one to open when...' %>
-  <%= f.select :category_id, Category.all.map {|c| [c.name, c.id]} %><br>
+  <%=f.hidden_field :sender_id, value: current_user.id %>
+  <%= f.label :'You want your loved one to open when:' %>
+  <%= f.select :category_id, Category.all.map {|c| [c.name, c.id]}, {} ,{class: 'form-control'} %>
   <%= f.label :title %>
-  <%= f.text_field :title %><br>
-  <%= f.label :content %><br>
-  <%= f.text_area :content %><br>
+  <%= f.text_field :title, class: "form-control" %>
+  <%= f.label :content %>
+  <%= f.text_area :content, class: "form-control" %>
   <%=f.fields_for :tags do |tag| %>
     <%= tag.label :tag %>
-    <%= tag.text_field :name %><br>
+    <%= tag.text_field :name, class: "form-control" %>
   <% end %>
   <%= f.label :recipient_email %>
-  <%= f.text_field :recipient_email, list: "recipient_autocomplete" %>
+  <%= f.text_field :recipient_email, list: "recipient_autocomplete", class: "form-control" %>
   <datalist id="recipient_autocomplete">
     <% @uniq_senders_receivers.each do |email| %>
     <option value="<%=email%>" >
       <% end %>
    </datalist>
-  <br>
+
   <%= f.submit "Send an OpenWhen", class: 'btn btn-large btn-primary' %>
 <% end %>
+
+</div>

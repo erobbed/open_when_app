@@ -52,7 +52,7 @@ class PostsController < ApplicationController
         end.flatten.uniq
         @posts =
         all_post_tags.map do |post_tag_object|
-          Post.find_by(id: post_tag_object.post_id)
+          Post.where(id: post_tag_object.post_id, recipient_id: current_user.id)
         end.flatten.uniq
       else
         flash[:search] = "Sorry! Your search did not turn up any results."
