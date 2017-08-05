@@ -12,7 +12,7 @@
 
 
      <strong> Total users: </strong> <%= User.all.count %><br>
-     <% if User.all.count > 1 %>
+     <% if User.all.count > 2 %>
        <strong> Total minutes spent by all users on platform: </strong> <%= @total_duration.round(2) %><br>
        <strong> Longest visit to OpenWhen: </strong> <%= @longest_duration.round(2) %> minutes<br>
        <strong> Average minutes spent per visit to OpenWhen: </strong> <%= (@total_duration / Visit.all.count).round(2) %><br>

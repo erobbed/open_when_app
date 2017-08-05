@@ -10,16 +10,17 @@
           <p>
             Someone has sent you an OpenWhen!
           </p>
-            To see it, login here: <%= @url %>
-          </p>
-            Your username is: <%= @user.username %>.<br>
+          <p>
+            To see it, visit <strong><a href="<%= @url %>">www.openwhen.co</a></strong>.
           </p>
           <p>
-            Your password is: OpenWhen (case sensitive!)
-          </p>Enjoy your special message!</p>
+            <strong>Your username:</strong> <%= @user.username %>.<br>
+          </p>
+          <p>
+            <strong>Your password:</strong> OpenWhen (case sensitive!)
+          </p>N.B.: You can change your username and password after your first login. Enjoy your special message!</p>
+      
       <% else %>
-
-
 
           <h1>Lucky duck!</h1>
           <img src="https://media.giphy.com/media/e8n2clEN45Yre/giphy.gif" alt="duck">
@@ -27,12 +28,14 @@
             Someone has sent you an OpenWhen!
           </p>
           <p>
-            To see it, login here: <%= @url %>
+            To see it, visit <strong><a href="<%= @url %>">www.openwhen.co</a></strong>.
           </p>
           <p>
-            Your username is: <%= @user.username %>.<br>
+            <strong>Your username:</strong> <%= @user.username %><br>
           </p>
-          </p>Enjoy your special message!</p>
+          <p>
+            Enjoy your special message!
+          </p>
 
         <% end %>
   </body>
