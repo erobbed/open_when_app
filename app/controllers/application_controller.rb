@@ -20,7 +20,14 @@ class ApplicationController < ActionController::Base
   end
 
   def allthefeels
-    all_durations = Visit.all[0...-1].map {|visit| (visit.ended_at - visit.started_at)/60}
+    all_durations = Visit.all[0...-1].map do |visit|
+      if !visit.ended_at
+        visit.ended_at = Time.now
+      else
+        (visit.ended_at - visit.started_at)/60
+      end
+
+    end
 
     @total_duration = all_durations.inject(:+)
     @longest_duration = all_durations.max
