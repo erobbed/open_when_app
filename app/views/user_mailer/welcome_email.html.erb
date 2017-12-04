@@ -5,18 +5,17 @@
   </head>
   <body>
 
-
-
-    <h1>Welcome to OpenWhen.co, <%= @user.name.titleize %></h1>
+    <h1>Welcome, <%= @user.name.titleize %>!</h1>
+     <img src="https://media.giphy.com/media/xUPGGDNsLvqsBOhuU0/giphy.gif" alt="welcome">
     <p>
-      You have successfully signed up,
-      your username is: <%= @user.username %>.<br>
+      You have successfully signed up for www.openwhen.co!
     </p>
     <p>
-      To login to the site, just follow this link: <%= @url %>.
+      <strong>Your username:</strong> <%= @user.username %>
     </p>
-    <p>Thanks for joining and have a great day!</p>
-
-
+    <p>
+      To login, visit <strong><a href="<%= @url %>/login">www.openwhen.co</a></strong>.
+    </p>
+    <p>Thanks for joining and happy sending!</p>
   </body>
 </html>

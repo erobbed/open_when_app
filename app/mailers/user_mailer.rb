@@ -3,13 +3,13 @@ class UserMailer < ApplicationMailer
 
   def welcome_email(user)
     @user = user
-    @url  = 'localhost:3000/'
+    @url  = 'www.openwhen.co'
     mail(to: @user.email, subject: 'Welcome to Open When')
   end
 
   def new_openwhen(recipient)
     @user = recipient
-    @url  = 'localhost:3000/'
+    @url  = 'www.openwhen.co'
     mail(to: @user.email, subject: 'Someone sent you a message!')
   end
 end
