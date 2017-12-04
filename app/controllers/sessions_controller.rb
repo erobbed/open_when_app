@@ -17,8 +17,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    visit = Visit.find_by(id: session[:visit_id])
-    visit.update(ended_at: Time.now)
+    # visit = Visit.find_by(id: session[:visit_id])
+    # visit.update(ended_at: Time.now)
     session.clear
     redirect_to '/login'
   end
